@@ -158,3 +158,20 @@ nav.list a:not([data-active]):hover {
 }
 
 main { padding: 0.5rem 0; }
+
+@media (max-width: 768px) {
+:root {
+	font-size: 15px;
+	--line-weight: 0.1025rem;
+}
+.page {
+	padding: 2rem 1.5rem;
+}
+.page::before, .page::after {
+	content: none;
+}
+nav.list a {
+	font-size: 1.3rem;
+	font-weight: 400;
+}
+}

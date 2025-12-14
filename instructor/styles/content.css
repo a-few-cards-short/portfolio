@@ -241,3 +241,16 @@ kbd {
 	align-items: center;
 	margin-bottom: 1rem;
 }
+
+@media (max-width: 768px) {
+.right {
+	width: 85%;
+	margin-left: 15%;
+}
+.resume {
+	grid-template-columns: 1fr;
+}
+.controls {
+	grid-template-columns: 3.5rem 1fr;
+}
+}

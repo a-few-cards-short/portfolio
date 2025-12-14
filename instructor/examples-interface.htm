@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Cody Kostiuk">
+<title>CK | Examples</title>
+<link rel="icon" href="">
+<link rel="stylesheet" href="styles/style.css">
+<script defer src="scripts/script.js"></script>
+
+</head>
+<body>
+
+<div class="page">
+<header>
+	<a href="index.htm">
+		<div>CODY</div>
+		<div>KOSTIUK</div>
+	</a>
+</header>
+<aside>
+	CLEAR, VERSATILE, EFFECTIVE
+</aside>
+<nav>
+	<a href="index.htm">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 38" fill="none" style="height:1.2rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor;">
+			<path d="M 40,18 V 6 h -6 v 6 M 46,24 24,2 2,24 m 6,1 V 36 H 20 V 24 h 8 V 36 H 40 V 25 L 24,9 Z" style="stroke-width:0.15rem; stroke-linecap:round; stroke-linejoin:round;" />
+		</svg>
+	</a>
+	<a href="philosophy.htm">Philosophy</a>
+	<a href="examples.htm" data-active>Examples</a>
+	<a href="experience.htm">Experience</a>
+	<a href="contact.htm">Contact</a>
+</nav>
+<main>
+
+<p><a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+	<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+</svg>Back to Examples</a></p>
+
+<h1 style="padding-top:0;">application ui overhaul</h1>
+
+<p><a target="_blank" href="https://moi3d.com/">Moment of Inspiration<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor; margin-left: 0.5ch;">
+			<path d="M 10,8 H 4 v 12 h 12 v -6 m 3,-9 -9,9 M 20,11 V 4 h -7" style="stroke-width:0.09rem; stroke-linecap:round; stroke-linejoin:round;" />
+		</svg></a> (moi3d) is an extremely user-friendly and intuitive NURBS modeller. However, its interface was distracting so I hacked the CSS to create a custom dark-themed UI (without altering the HTML). I also tweaked the native light rendering to showcase construction lines better. A good user interface should feel clean, consistent, inviting and not distract from the content being worked on.</p>
+
+<figcaption class="polar">
+	<div><i>Original UI</i></div>
+	<div><i>Custom Dark UI</i></div>
+</figcaption>
+
+<div class="compare-images">
+	<img src="media/moi-modified-styles.png">
+	<img src="media/moi-original-styles.png">
+	<input class="slider" type="range" min="0" max="100" step="0.01" value="50">
+	<svg class="divider" viewBox="0 0 24 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+		<line x1="12" y1="0" x2="12" y2="12" style="stroke:white; stroke-width:0.1rem;" />
+	</svg>
+	<svg class="divider shadow" viewBox="0 0 24 12" xmlns="http://www.w3.org/2000/svg">
+		<path d="M 8,2 2,6 8,10" style="stroke:black; stroke-width:0.3rem;" />
+		<path d="m 16,2 6,4 -6,4" style="stroke:black; stroke-width:0.3rem;" />
+		<path d="M 8,2 2,6 8,10" style="stroke:white; stroke-width:0.2rem;" />
+		<path d="m 16,2 6,4 -6,4" style="stroke:white; stroke-width:0.2rem;" />
+	</svg>
+	<div class="instruction">Click and drag anywhere on this image to compare the interface modifications.<br>
+	<small>(Click the corner icon to expand.)</small></div>
+	<svg class="view shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" onclick="show('expanded-compare');">
+		<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:black; stroke-width:0.25rem;" />
+		<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:white; stroke-width:0.15rem;" />
+	</svg>
+</div>
+
+<div id="expanded-compare" class="expanded" style="display:none;" onclick="hide('expanded-compare');">
+<div class="compare-images">
+	<img src="media/moi-modified-styles.png">
+	<img src="media/moi-original-styles.png">
+	<input class="slider" type="range" min="0" max="100" step="0.01" value="50" onclick="event.stopPropagation();">
+	<svg class="divider" viewBox="0 0 24 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+		<line x1="12" y1="0" x2="12" y2="12" style="stroke:white; stroke-width:0.1rem;" />
+	</svg>
+	<svg class="divider shadow" viewBox="0 0 24 12" xmlns="http://www.w3.org/2000/svg">
+		<path d="M 8,2 2,6 8,10" style="stroke:black; stroke-width:0.3rem;" />
+		<path d="m 16,2 6,4 -6,4" style="stroke:black; stroke-width:0.3rem;" />
+		<path d="M 8,2 2,6 8,10" style="stroke:white; stroke-width:0.2rem;" />
+		<path d="m 16,2 6,4 -6,4" style="stroke:white; stroke-width:0.2rem;" />
+	</svg>
+</div>
+<svg class="view shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" onclick="hide('expanded-compare');">
+	<path d="m 21,21 -5,-5 m 3,-1 h -4 v 4 M 3,21 8,16 M 5,15 h 4 v 4 M 21,3 16,8 m 3,1 H 15 V 5 M 3,3 8,8 M 5,9 H 9 V 5" style="stroke:black; stroke-width:0.25rem;" />
+	<path d="m 21,21 -5,-5 m 3,-1 h -4 v 4 M 3,21 8,16 M 5,15 h 4 v 4 M 21,3 16,8 m 3,1 H 15 V 5 M 3,3 8,8 M 5,9 H 9 V 5" style="stroke:white; stroke-width:0.15rem;" />
+</svg>
+</div>
+
+<script>
+const slider = document.querySelector('.slider');
+const compare = document.querySelector('.compare-images');
+const instruction = document.querySelector('.instruction');
+slider.addEventListener('input', function (event) {
+	compare.style.setProperty('--position', event.target.value + '%');
+	instruction.style.opacity = "0";
+});
+
+const sliderExpanded = document.querySelector('.expanded .slider');
+const compareExpanded = document.querySelector('.expanded .compare-images');
+sliderExpanded.addEventListener('input', function (event) {
+	event.stopPropagation();
+	compareExpanded.style.setProperty('--position', event.target.value + '%');
+});
+</script>
+
+<p class="right"><em>That 3D model is 12-year-old me's ultimate dream 16-bit gaming console. :-)</em></p>
+
+<p>The interactive parts of the interface are more subtle now, but still feel like physical things to engage with. Tabs are connected to their panels, gradients give the illusion of depth and icons feel like they're peeling slightly from the panel as the cursor hovers over. The dark interface is easier on the eyes for extended hours of use. <em>(Light themes are typically easier for reading though.)</em> The modelling is also much easier to see and surface edges are distinct. NURBS modelling is all about the edges.</p>
+
+<figcaption class="polar">
+	<div><i>Original UI</i></div>
+	<div><i>Custom Dark UI</i></div>
+</figcaption>
+
+<div class="compare-captures">
+	<div>
+		<video id="video-1" tabindex="0">
+			<source src="media/moi-original.webm" type="video/mp4">
+		</video>
+		<svg id="play-1" class="play shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<circle r="10" cx="12" cy="12" style="fill:none; stroke:black; stroke-width:0.125rem;" />
+			<circle r="10" cx="12" cy="12" style="fill:none; stroke:white; stroke-width:0.1rem;" />
+			<path d="M 8,7 V 17 L 18,12 Z" style="fill:black; stroke:black; stroke-width:0.025rem;" />
+			<path d="M 8,7 V 17 L 18,12 Z" style="fill:white; stroke:none;" />
+		</svg>
+		<svg id="full-1" class="view shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:black; stroke-width:0.25rem;" />
+			<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:white; stroke-width:0.15rem;" />
+		</svg>
+		<div class="controls">
+			<button id="toggle-1">
+				<svg class="icon" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 2 L2 14 L12 8 L2 2 z M14 2 L14 14 L17 14 L17 2 L14 2 z M19 2 L19 14 L22 14 L22 2 L19 2 z" style="stroke:none; fill:#626773" />
+				</svg>
+			</button>
+			<input id="seek-1" type="range" min="0" max="100" step="0.01" value="0">
+		</div>
+	</div>
+	<div>
+		<video id="video-2" tabindex="0">
+			<source src="media/moi-modified.webm" type="video/mp4">
+		</video>
+		<svg id="play-2" class="play shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<circle r="10" cx="12" cy="12" style="fill:none; stroke:black; stroke-width:0.125rem;" />
+			<circle r="10" cx="12" cy="12" style="fill:none; stroke:white; stroke-width:0.1rem;" />
+			<path d="M 8,7 V 17 L 18,12 Z" style="fill:black; stroke:black; stroke-width:0.025rem;" />
+			<path d="M 8,7 V 17 L 18,12 Z" style="fill:white; stroke:none;" />
+		</svg>
+		<svg id="full-2" class="view shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:black; stroke-width:0.25rem;" />
+			<path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:white; stroke-width:0.15rem;" />
+		</svg>
+		<div class="controls">
+			<button id="toggle-2">
+				<svg class="icon" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 2 L2 14 L12 8 L2 2 z M14 2 L14 14 L17 14 L17 2 L14 2 z M19 2 L19 14 L22 14 L22 2 L19 2 z" style="stroke:none; fill:#626773" />
+				</svg>
+			</button>
+			<input id="seek-2" type="range" min="0" max="100" step="0.01" value="0">
+		</div>
+	</div>
+</div>
+
+<p class="right"><em>The dark UI is harder to appreciate surrounded by the light theme of this website. Use the fullscreen icon to see a better representation.</em></p>
+
+<p>Due to the original icons being low resolution (and with <a href="https://docstore.mik.ua/orelly/web2/wdesign/ch19_07.htm#wdnut2-CHP-19-FIG-4" target="_blank">haloing<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor; margin-left: 0.5ch;">
+	<path d="M 10,8 H 4 v 12 h 12 v -6 m 3,-9 -9,9 M 20,11 V 4 h -7" style="stroke-width:0.09rem; stroke-linecap:round; stroke-linejoin:round;" />
+</svg></a>), I remade most of the icons as vectors; making for more consistent looking, higher resolution versions that scaled and rendered cleanly. It was also important to not deviate too much from the established icon designs, as I didn't want to confuse existing users. <em>(Of course, I shared it with the community ... and some suggested it become the default UI.)</em></p>
+
+<p class="glow" style="width:80%; margin:1.5rem 10% 0 10%;"><img src="media/moi-icons.png"></p>
+
+<p class="right"><em>All icons are 2D and shaded with gradients (and a dash of clever masking).&nbsp; ;-)</em></p>
+
+<h1>additional functionality</h1>
+
+<p>Unfortunately, <i>Moment of Inspiration</i> lacks one major feature that I use heavily when modelling and that is being able to move selected objects with the arrow keys. Luckily, <i>Moi3D</i> allows for custom JavaScript commands. Though it lacks thorough API documentation, I was still able to cobble together a robust and stable solution known as <b>Nimble Nudge</b>. There were other attempts at nudge commands in the community, but nothing as solid as this.</p>
+
+<p>Key features include:
+<ul>
+	<li>Arrow keys and PgUp/PgDn keys move selected objects.</li>
+	<li>Optionally, CTRL/SHIFT moves objects by a small or large amount.</li>
+	<li>Arrow keys work in alignment with the active view.</li>
+	<li>Active custom work planes are recognized.</li>
+</ul>
+</p>
+
+<p class="right"><em>Here's the source code, if you are curious ... and not faint of heart!</em></p>
+
+<style>
+	.keyword		{ color: #1693a0; font-weight: 575; }
+	.string, .regex, .number
+					{ color: #cc2f41; }
+	.comment		{ color: #7ca65d; font-style: italic; }
+	.punctuation	{ color: #868d9b; }
+	#code			{ font-size: 0.9rem; font-weight:450; }
+</style>
+
+
+<details>
+	<summary>Nimble Nudge (JavaScript Source Code)</summary>
+	<hr>
+	<pre id="code">#include "GetObjects.js"
+
+/* 
+	
+- nimble nudge allows you to easily move selected objects and editing points by using the arrow keys and pgup/pgdn keys
+
+- in 2d view (top/bottom, left/right, front/back) :
+	- up, down, left, right will move the selected objects according to your screen view
+	- raise/lower (pgup/pgdn keys) work like the up/down arrow keys, but for z-axis movement only -- (***) disabled in the top/bottom view due to orthographic projection (lack of perspective)
+
+- in 3d view (3d/split) :
+	- up/down is the y-axis
+	- left/right is the x-axis 
+	- raise/lower (pgup/pgdn keys) is the z-axis
+
+- all movement also works with the active work plane (c-plane) in the same manner
+
+- optionally, distance modifier keys (ctrl/shift) can be used :
+	- "ctrl + direction" will move by SMALL_DISTANCE
+	- "direction" will move by NORMAL_DISTANCE
+	- "shift + direction" will move by LARGE_DISTANCE
+
+- suggested distances for working in : 
+	- "mm" (or any metric value) : 0.01 / 0.1 / 1.0
+	- "inches" : 0.015625 / 0.125 / 1.0
+	- "feet" (still use inches in moi) : 0.125 / 1.0 / 12.0
+- (!) distance values must be a valid number
+
+- to quickly configure this script, copy the block of text below and paste it in the "moi.ini" file under the "[Shortcut Keys]" header
+- (!) check for conflicting shortcut keys
+
+RightArrow=_NimbleNudge Right
+Ctrl+RightArrow=_NimbleNudge Right Small
+Shift+RightArrow=_NimbleNudge Right Large
+LeftArrow=_NimbleNudge Left
+Ctrl+LeftArrow=_NimbleNudge Left Small
+Shift+LeftArrow=_NimbleNudge Left Large
+UpArrow=_NimbleNudge Up
+Ctrl+UpArrow=_NimbleNudge Up Small
+Shift+UpArrow=_NimbleNudge Up Large
+DownArrow=_NimbleNudge Down
+Ctrl+DownArrow=_NimbleNudge Down Small
+Shift+DownArrow=_NimbleNudge Down Large
+PageUp=_NimbleNudge Raise
+Ctrl+PageUp=_NimbleNudge Raise Small
+Shift+PageUp=_NimbleNudge Raise Large
+PageDown=_NimbleNudge Lower
+Ctrl+PageDown=_NimbleNudge Lower Small
+Shift+PageDown=_NimbleNudge Lower Large
+
+*/
+
+const SMALL_DISTANCE	=  0.01;	// (ctrl)
+const NORMAL_DISTANCE	=  0.1;
+const LARGE_DISTANCE	=  1.0;		// (shift)
+
+function DoNimbleNudge() {
+	var params = moi.command.getCommandLineParams();
+	if (params.length == 0) {
+		moi.ui.alert("Nimble Nudge works with directional shortcut keys. To configure this script, open \"_NimbleNudge.js\" in your MoI commands folder with a text editor and follow the instructions.");
+		return;
+	}
+
+	var object_picker = moi.ui.createObjectPicker();
+	object_picker.allowEditPoints();
+	object_picker.done(); // (!) close the "waitable" object picker
+	
+	var objects = object_picker.objects;
+	if (objects.length == 0) return;
+
+	var dist = NORMAL_DISTANCE; // default (no modifier key)
+	var axis = "xaxis"; // default
+	var dir = 0; // positive (1), negative (-1), ignore movement (0)
+
+	var view_mode = moi.ui.mainWindow.viewpanel.mode; // (!) returns "split" or "3d" (other modes are not accurately reported)
+	var view_name = moi.ui.getActiveViewport().Name; // last active viewport (or view port mouse cursor is over in split view mode)
+
+	var restrict_to_3axis = false;
+	if (view_mode == "split" || view_mode == "3d") restrict_to_3axis = true;
+
+	if (params.search(/right/i) != -1 ) { // RIGHT
+		if (restrict_to_3axis) {
+			axis = "xaxis";  dir = 1;
+		} else {
+			switch (view_name) {
+				case  "Top"     : axis = "xaxis";  dir = 1;   break;
+				case  "Bottom"  : axis = "xaxis";  dir = 1;   break;
+				case  "Front"   : axis = "xaxis";  dir = 1;   break;
+				case  "Back"    : axis = "xaxis";  dir = -1;  break;
+				case  "Right"   : axis = "yaxis";  dir = 1;   break;
+				case  "Left"    : axis = "yaxis";  dir = -1;  break;
+			}
+		}
+	} else if (params.search(/left/i) != -1) { // LEFT
+		if (restrict_to_3axis) {
+			axis = "xaxis";  dir = -1;
+		} else {
+			switch (view_name) {
+				case  "Top"     : axis = "xaxis";  dir = -1;  break;
+				case  "Bottom"  : axis = "xaxis";  dir = -1;  break;
+				case  "Front"   : axis = "xaxis";  dir = -1;  break;
+				case  "Back"    : axis = "xaxis";  dir = 1;   break;
+				case  "Right"   : axis = "yaxis";  dir = -1;  break;
+				case  "Left"    : axis = "yaxis";  dir = 1;   break;
+			}
+		}
+	} else if (params.search(/up/i) != -1) { // UP
+		if (restrict_to_3axis) {
+			axis = "yaxis";  dir = 1;
+		} else {
+			switch (view_name) {
+				case  "Top"     : axis = "yaxis";  dir = 1;   break;
+				case  "Bottom"  : axis = "yaxis";  dir = -1;  break;
+				case  "Front"	: axis = "zaxis";  dir = 1;   break;
+				case  "Back"    : axis = "zaxis";  dir = 1;   break;
+				case  "Right"   : axis = "zaxis";  dir = 1;   break;
+				case  "Left"    : axis = "zaxis";  dir = 1;   break;
+			}
+		}
+	} else if (params.search(/down/i) != -1) { // DOWN
+		if (restrict_to_3axis) {
+			axis = "yaxis";  dir = -1;
+		} else {
+			switch (view_name) {
+				case  "Top"     : axis = "yaxis";  dir = -1;  break;
+				case  "Bottom"  : axis = "yaxis";  dir = 1;   break;
+				case  "Front"   : axis = "zaxis";  dir = -1;  break;
+				case  "Back"    : axis = "zaxis";  dir = -1;  break;
+				case  "Right"   : axis = "zaxis";  dir = -1;  break;
+				case  "Left"    : axis = "zaxis";  dir = -1;  break;
+			}
+		}
+	} else if (params.search(/raise/i) != -1) { // RAISE
+		if (restrict_to_3axis) {
+			axis = "zaxis";  dir = 1;
+		} else {
+			switch (view_name) { // (***) remove top/down z-axis movement
+				case  "Front"   : axis = "zaxis";  dir = 1;   break;
+				case  "Back"    : axis = "zaxis";  dir = 1;   break;
+				case  "Right"   : axis = "zaxis";  dir = 1;   break;
+				case  "Left"    : axis = "zaxis";  dir = 1;   break;
+			}
+		}
+	} else if (params.search(/lower/i) != -1) { // LOWER
+		if (restrict_to_3axis) {
+			axis = "zaxis";  dir = -1;
+		} else {
+			switch (view_name) { // (***) remove top/down z-axis movement
+				case  "Front"   : axis = "zaxis";  dir = -1;  break;
+				case  "Back"    : axis = "zaxis";  dir = -1;  break;
+				case  "Right"   : axis = "zaxis";  dir = -1;  break;
+				case  "Left"    : axis = "zaxis";  dir = -1;  break;
+			}
+		}
+	}
+
+	// (!) DIRECTION and AXIS is now confirmed
+
+	if (dir != 0)	{
+		if (params.search(/large/i) != -1) {
+			dist = LARGE_DISTANCE;
+		} else if (params.search(/small/i) != -1) {
+			dist = SMALL_DISTANCE;
+		}
+		// (!) DISTANCE is now confirmed
+
+		// create 2 points, these will default to 0,0,0
+		var basept = moi.vectorMath.createPoint();
+		var offsetpt = moi.vectorMath.createPoint();
+
+		// set up the offset point
+		var cplanedir = moi.view.getCPlane()[axis]; // align to c-plane
+		cplanedir.scale(dist * dir); // apply distance
+		offsetpt.add(cplanedir);
+
+		var factory = moi.command.createFactory("move");
+		factory.setInput(0, objects);
+		factory.setInput(1, basept);
+		factory.setInput(2, offsetpt);
+		factory.commit();
+	}
+}
+
+DoNimbleNudge();</pre>
+	<hr>
+</details>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+	highlightJS("code");
+});
+</script>
+
+</main>
+<footer>
+
+<div class="examples-footer" style="margin-top:2rem;">
+	<a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Back to Examples</a>
+	<a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 8,20 V 14 H 2 L 12,4 22,14 h -6 v 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Scroll Up</a>
+</div>
+
+</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Cody Kostiuk">
+<title>CK | Examples</title>
+<link rel="icon" href="">
+<link rel="stylesheet" href="styles/style.css">
+<script defer src="scripts/script.js"></script>
+
+</head>
+<body>
+
+<div class="page">
+<header>
+	<a href="index.htm">
+		<div>CODY</div>
+		<div>KOSTIUK</div>
+	</a>
+</header>
+<aside>
+	CLEAR, VERSATILE, EFFECTIVE
+</aside>
+<nav>
+	<a href="index.htm">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 38" fill="none" style="height:1.2rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor;">
+			<path d="M 40,18 V 6 h -6 v 6 M 46,24 24,2 2,24 m 6,1 V 36 H 20 V 24 h 8 V 36 H 40 V 25 L 24,9 Z" style="stroke-width:0.15rem; stroke-linecap:round; stroke-linejoin:round;" />
+		</svg>
+	</a>
+	<a href="philosophy.htm">Philosophy</a>
+	<a href="examples.htm" data-active>Examples</a>
+	<a href="experience.htm">Experience</a>
+	<a href="contact.htm">Contact</a>
+</nav>
+<main>
+
+<p><a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+	<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+</svg>Back to Examples</a></p>
+
+<h1 style="padding-top:0;">game programming</h1>
+
+<p><pre style="font-size:150%; font-weight:400; text-align:center;">[ INSERT GAME HERE ]</pre></p>
+
+<p>Okay, you caught me. I've built little toys over the years, but never committed fully to making an actual, bona fide game. <em>(Though you can check out a bit of my coding prowess in the <a href="examples-interface.htm"><nobr>UI Overhaul</nobr></a> and <a href="examples-scanner.htm"><nobr>Fingerprint Scanner</nobr></a> examples ... and this site itself.)</em> Instead, I want to use this opportunity to talk about AI and it's place in programming.</p>
+
+<p>AI is a tool. It's the tool of the future, but it should never be the answer. Currently, you have to be very explicit with LLMs and you need to understand programming fundamentals in order to integrate AI generated code into your projects. Sometimes, generated solutions just work and we don't know exactly how. This is when students should refactor the code and break it down into more digestible chunks.</p>
+
+<p class="note"><em>There's a saying going around that <b class="highlight">"you won't lose your job to AI, you'll lose your job to someone who uses AI."</b> That's why I've been playing around with AI a lot lately and understand how it works and how it can augment our existing skill sets.</em></p>
+
+<p class="center">I used <i>Copilot</i> to help me make this small 2D spaceship flight toy. Please use the <nobr><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></nobr> keys to navigate the ship.</p>
+
+<style>
+	canvas {
+		background: #000;
+		display: block;
+		margin: auto;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 3 / 2;
+	}
+</style>
+
+<div class="glow">
+<canvas id="gameCanvas" width="900" height="600"></canvas>
+</div>
+
+<script>
+	const canvas = document.getElementById('gameCanvas');
+	const ctx = canvas.getContext('2d');
+
+	const frameTimes = [];
+	let lastFpsDisplayTime = performance.now();
+	let displayedFps = 0;
+
+	const keys = {};
+	document.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
+	document.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
+
+	const ship = {
+		x: 0, y: 0, angle: -Math.PI / 2, vx: 0, vy: 0,
+		rotationSpeed: 0.05, thrust: 0.2, friction: 0.98
+	};
+
+	const particles = [];
+
+	// Circle path for particles
+	const particlePath = new Path2D();
+	particlePath.arc(0, 0, 1, 0, Math.PI * 2);
+
+	function createStars(count, tileSize, sizeScale = 1) {
+		const stars = [];
+		for (let i = 0; i < count; i++) {
+			stars.push({
+				x: Math.random() * tileSize,
+				y: Math.random() * tileSize,
+				r: sizeScale
+			});
+		}
+		return stars;
+	}
+
+	// Define layers once, each builds its own stars + path
+	const starLayers = [
+		{ count: 20, tileSize: 2000, parallax: 0.2, color: '#fff', starSize: 1 },
+		{ count: 80, tileSize: 2000, parallax: 0.1, color: '#ccc', starSize: 0.9 },
+		{ count: 200, tileSize: 2000, parallax: 0.075, color: '#aaa', starSize: 0.8 },
+		{ count: 400, tileSize: 2000, parallax: 0.05, color: '#888', starSize: 0.7 },
+		{ count: 800, tileSize: 2000, parallax: 0.025, color: '#666', starSize: 0.6 }
+	].map(layer => {
+		const path = new Path2D();
+		path.arc(0, 0, layer.starSize, 0, Math.PI * 2);
+		return {
+			...layer,
+			stars: createStars(layer.count, layer.tileSize, layer.starSize),
+			path
+		};
+	});
+
+	function emitParticles(count, offset, spread, baseSpeed, randomness, color) {
+		for (let i = 0; i < count; i++) {
+			particles.push({
+				x: ship.x - Math.cos(ship.angle) * offset + (Math.random() * spread - spread / 2),
+				y: ship.y - Math.sin(ship.angle) * offset + (Math.random() * spread - spread / 2),
+				vx: -Math.cos(ship.angle) * baseSpeed + (Math.random() - 0.5) * randomness,
+				vy: -Math.sin(ship.angle) * baseSpeed + (Math.random() - 0.5) * randomness,
+				r: Math.random() * 2 + 1,
+				alpha: 1,
+				color: color || 'rgba(0,255,255,'
+			});
+		}
+	}
+
+	function update() {
+		if (keys['a']) ship.angle -= ship.rotationSpeed;
+		if (keys['d']) ship.angle += ship.rotationSpeed;
+		if (keys['w']) {
+			ship.vx += Math.cos(ship.angle) * ship.thrust;
+			ship.vy += Math.sin(ship.angle) * ship.thrust;
+
+			emitParticles(3, 20, 4, 0.5, 0.5, 'rgba(0,255,255,'); // core
+			emitParticles(2, 20, 12, 0.3, 1.2, 'rgba(0,153,153,'); // peripheral
+		}
+		if (keys['s']) {
+			ship.vx -= Math.cos(ship.angle) * ship.thrust * 0.5;
+			ship.vy -= Math.sin(ship.angle) * ship.thrust * 0.5;
+		}
+
+		ship.vx *= ship.friction;
+		ship.vy *= ship.friction;
+		ship.x += ship.vx;
+		ship.y += ship.vy;
+	}
+
+	function drawStars(layer, cameraX, cameraY) {
+		const { stars, parallax, tileSize, color, path } = layer;
+		ctx.fillStyle = color;
+
+		for (let star of stars) {
+			const starX = ((star.x - (cameraX * parallax)) % tileSize + tileSize) % tileSize;
+			const starY = ((star.y - (cameraY * parallax)) % tileSize + tileSize) % tileSize;
+			const screenX = starX + canvas.width / 2 - tileSize / 2;
+			const screenY = starY + canvas.height / 2 - tileSize / 2;
+
+			ctx.save();
+			ctx.translate(screenX, screenY);
+			ctx.fill(path);
+			ctx.restore();
+		}
+	}
+
+	function drawGrid(cameraX, cameraY, spacing = 100) {
+		ctx.lineWidth = 1.35;
+		ctx.strokeStyle = 'rgba(0, 64, 255, 0.4)';
+		const offsetX = cameraX % spacing;
+		const offsetY = cameraY % spacing;
+
+		for (let x = -offsetX; x < canvas.width; x += spacing) {
+			ctx.beginPath();
+			ctx.moveTo(x, 0);
+			ctx.lineTo(x, canvas.height);
+			ctx.stroke();
+		}
+
+		for (let y = -offsetY; y < canvas.height; y += spacing) {
+			ctx.beginPath();
+			ctx.moveTo(0, y);
+			ctx.lineTo(canvas.width, y);
+			ctx.stroke();
+		}
+	}
+
+	function drawShip() {
+		ctx.save();
+		ctx.translate(canvas.width / 2, canvas.height / 2);
+		ctx.rotate(ship.angle);
+		ctx.beginPath();
+		ctx.moveTo(20, 0);
+		ctx.lineTo(-15, 10);
+		ctx.lineTo(-15, -10);
+		ctx.closePath();
+		ctx.fillStyle = '#0f0';
+		ctx.fill();
+		ctx.restore();
+	}
+
+	function drawParticles() {
+		for (let i = particles.length - 1; i >= 0; i--) {
+			const p = particles[i];
+			p.x += p.vx;
+			p.y += p.vy;
+			p.alpha -= 0.025;
+
+			const screenX = p.x - ship.x + canvas.width / 2;
+			const screenY = p.y - ship.y + canvas.height / 2;
+
+			ctx.save();
+			ctx.translate(screenX, screenY);
+			const scale = p.r / 1.5;
+			ctx.scale(scale, scale);
+			ctx.fillStyle = `${p.color}${p.alpha})`;
+			ctx.fill(particlePath);
+			ctx.restore();
+
+			if (p.alpha <= 0) particles.splice(i, 1);
+		}
+	}
+
+	function loop() {
+		update();
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		for (let layer of starLayers) drawStars(layer, ship.x, ship.y);
+		drawGrid(ship.x, ship.y);
+		drawShip();
+		drawParticles();
+
+		const now = performance.now();
+		frameTimes.push(now);
+		while (frameTimes.length && frameTimes[0] <= now - 1000) frameTimes.shift();
+		if (now - lastFpsDisplayTime >= 1000) {
+			displayedFps = frameTimes.length;
+			lastFpsDisplayTime = now;
+		}
+
+		ctx.fillStyle = '#0f0';
+		ctx.font = '16px monospace';
+		ctx.fillText(`FPS: ${displayedFps}`, canvas.width - 100, canvas.height - 30);
+		requestAnimationFrame(loop);
+	}
+
+	loop();
+</script>
+
+
+<p>It took a bit of coaxing, but after a while, I figured out how to describe what I wanted and broke up those requests into bite-sized pieces. Asking for all of that at once was too much for the AI though. <em>(This was a very informative exercise for me.)</em> The ship movement is basic, but the multi-layered, configurable, randomly dispersed, repeating parallax star field <em>(whew!)</em> was a bit more than I could chew so I'm glad <i>Copilot</i> had a strategy for that. Everything you see though had to be tweaked manually and that means understanding what is going on.</p>
+
+<p>At the end of the day, if I suspected a student of using AI too heavily for an assignment, I'd be inclined to ask <i>"<b>How does it work?</b> Why did you employ this particular strategy? Can you easily tweak it to work a different way? Show me, please."&nbsp;</i> I'm not concerned about how they got the answer; just if they understand it. <em>I have pretty good spider senses for this sort of thing.</em></p>
+
+<p class="shout center"><em>AI is a Swiss Army knife.<br>
+<span class="whisper">(Programmers need to know how to use it to survive.)</span></em></p>
+
+</main>
+<footer>
+
+<div class="examples-footer">
+	<a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Back to Examples</a>
+	<a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 8,20 V 14 H 2 L 12,4 22,14 h -6 v 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Scroll Up</a>
+</div>
+
+</footer>
+</div>
+
+</body>
+
+</body>
+</html>

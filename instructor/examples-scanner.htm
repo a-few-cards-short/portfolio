@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Cody Kostiuk">
+<title>CK | Examples</title>
+<link rel="icon" href="">
+<link rel="stylesheet" href="styles/style.css">
+<script defer src="scripts/script.js"></script>
+
+</head>
+<body>
+
+<div class="page">
+<header>
+	<a href="index.htm">
+		<div>CODY</div>
+		<div>KOSTIUK</div>
+	</a>
+</header>
+<aside>
+	CLEAR, VERSATILE, EFFECTIVE
+</aside>
+<nav>
+	<a href="index.htm">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 38" fill="none" style="height:1.2rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor;">
+			<path d="M 40,18 V 6 h -6 v 6 M 46,24 24,2 2,24 m 6,1 V 36 H 20 V 24 h 8 V 36 H 40 V 25 L 24,9 Z" style="stroke-width:0.15rem; stroke-linecap:round; stroke-linejoin:round;" />
+		</svg>
+	</a>
+	<a href="philosophy.htm">Philosophy</a>
+	<a href="examples.htm" data-active>Examples</a>
+	<a href="experience.htm">Experience</a>
+	<a href="contact.htm">Contact</a>
+</nav>
+<main>
+
+<p><a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+	<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+</svg>Back to Examples</a></p>
+
+<h1 style="padding-top:0;">scanner software</h1>
+
+<p><img src="media/scanner.jpg" style="width:25%; float:right; margin:0.5rem 2rem 0 2rem;">My employer purchased a fingerprint scanner from a jewellery supplier (fingerprint engraving is popular), but it didn't come with software. The supplier unknowingly sold us a product that only worked with expensive proprietary engraving software. However, these scanners were everywhere online (mostly used for security/tracking systems). Digging further, I found a <a href="https://www.zkteco.com/en/Biometrics_Module_SDK/ZKFinger-SDK-for-Windows" target="_blank">C/Java library<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1rem; position:relative; top:0.1rem; overflow:visible; stroke:currentColor; margin-left: 0.5ch;">
+		<path d="M 10,8 H 4 v 12 h 12 v -6 m 3,-9 -9,9 M 20,11 V 4 h -7" style="stroke-width:0.09rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg></a> online (and luckily with a Windows device driver) and decided to try my hand at building my own Java software solution.</p><div style="clear:both;"></div>
+
+<p class="right"><em>I had never programmed in C nor Java before. But what doesn't kill us, eh? ;-)</em></p>
+
+<p>The API documentation and example code was useful, but it only wrote image data directly to a PNG file with every single scan. This was needlessly taxing on the hard drive and inefficient. I was able to collect the scanner data, hold it in memory, display it and write the image file only if the user wanted to.</p>
+
+<div class="capture">
+<video id="video-1" tabindex="0"><source src="media/scanner.webm" type="video/mp4"></video>
+<svg id="play-1" class="play shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <circle r="10" cx="12" cy="12" style="fill:none; stroke:black; stroke-width:0.125rem;" />
+    <circle r="10" cx="12" cy="12" style="fill:none; stroke:white; stroke-width:0.1rem;" />
+    <path d="M 8,7 V 17 L 18,12 Z" style="fill:black; stroke:black; stroke-width:0.025rem;" />
+    <path d="M 8,7 V 17 L 18,12 Z" style="fill:white; stroke:none;" />
+</svg>
+<svg id="full-1" class="view shadow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:black; stroke-width:0.25rem;" />
+    <path d="m 20,20 -5,-5 m 6,2 v 4 H 17 M 4,20 9,15 m -6,2 v 4 H 7 M 20,4 15,9 M 21,7 V 3 H 17 M 4,4 9,9 M 3,7 V 3 h 4" style="stroke:white; stroke-width:0.15rem;" />
+</svg>
+<div class="controls">
+	<button id="toggle-1">
+		<svg class="icon" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+			<path d="M2 2 L2 14 L12 8 L2 2 z M14 2 L14 14 L17 14 L17 2 L14 2 z M19 2 L19 14 L22 14 L22 2 L19 2 z" style="stroke:none; fill:#626773" />
+		</svg>
+	</button>
+	<input id="seek-1" type="range" min="0" max="100" step="0.01" value="0">
+</div>
+</div>
+
+<p class="right" style="margin-bottom:2rem;"><em>Honestly, I still don't understand much about Java. It was my general programming knowledge that allowed me to muddle through and create stable, working software.</em></p>
+
+<style>
+	.keyword		{ color: #1693a0; font-weight: 575; }
+	.string, .regex, .number
+					{ color: #cc2f41; }
+	.comment		{ color: #7ca65d; font-style: italic; }
+	.punctuation	{ color: #868d9b; }
+	#code			{ font-size: 0.9rem; font-weight:450; }
+</style>
+
+<details>
+	<summary>Fingerprint Scanner (Java Source Code)</summary>
+	<hr>
+	<pre id="code">// project template : java with ant - java application
+
+package zk4500;
+
+import com.zkteco.biometric.FingerprintSensorEx; // zk4500 library
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.imageio.ImageIO;
+
+public class ZK4500 {
+    
+    private long device = 0;
+    private long database = 0;
+    private boolean deviceConnected = false;
+    private boolean scanningActive = false;
+    private byte[] imageData = null;
+    private int imageWidth = 0;
+    private int imageHeight = 0;
+    private AcquirePrintThread acquirePrint = null;
+    private JLabel containerScan = null;
+    private JLabel containerKeep = null;
+    private JButton buttonKeep = null;
+    private JLabel labelKeep = null;
+    
+    public void startApplication() {
+        JFrame f = new JFrame("ZK4500");
+        
+        JButton b1 = new JButton("Connect to the ZK4500 Scanner");
+        b1.setBounds(20,20,284, 40);
+        b1.setFocusPainted(false);
+        f.add(b1);
+        
+        JLabel l1 = new JLabel("Click the CONNECT button to proceed.");
+        l1.setBounds(324,20,374, 40);
+        f.add(l1);
+        
+        containerScan = new JLabel();
+        containerScan.setBounds(20,80,284, 369);
+        containerScan.setBorder(BorderFactory.createBevelBorder(1)); // 0 = outset, 1 = inset
+        f.add(containerScan);
+        
+        buttonKeep = new JButton(">>");
+        Font f1 = new Font(buttonKeep.getFont().getName(), buttonKeep.getFont().getStyle(), 24); // only change font size
+        buttonKeep.setFont(f1);
+        buttonKeep.setBounds(324,225,70, 80);
+        buttonKeep.setFocusPainted(false);
+        buttonKeep.setEnabled(false);
+        f.add(buttonKeep);
+        
+        containerKeep = new JLabel();
+        containerKeep.setBounds(414,80,284, 369);
+        containerKeep.setBorder(BorderFactory.createBevelBorder(1));
+        f.add(containerKeep);
+        
+        labelKeep = new JLabel("Click the >> button to keep the best fingerprint for comparison.", 4); // 4 = right, 2 = left, 0 = center
+        labelKeep.setBounds(20,469,374, 40);
+        labelKeep.setVisible(false);
+        f.add(labelKeep);
+        
+        JButton b3 = new JButton("^ Save Fingerprint to File ^");
+        b3.setBounds(414,469,284, 40);
+        b3.setFocusPainted(false);
+        b3.setEnabled(false);
+        f.add(b3);
+        
+        b1.addActionListener((ActionEvent e) -> {
+            int check = FingerprintSensorEx.Init();
+            if (check == 0) {
+                byte[] parameter = new byte[4];
+				int[] size = new int[1];
+                size[0] = 4;
+                device = FingerprintSensorEx.OpenDevice(0);
+                System.out.println("Device: " + device);
+                FingerprintSensorEx.GetParameters(device, 1, parameter, size);
+                imageWidth = byteArrayToInt(parameter);
+                FingerprintSensorEx.GetParameters(device, 2, parameter, size);
+                imageHeight = byteArrayToInt(parameter);
+                imageData = new byte[imageWidth * imageHeight];
+                l1.setText("The device is connected.  Press your finger upon the scanner.");
+                b1.setEnabled(false);
+                deviceConnected = true;
+                scanningActive = true; // keeps thread looping
+                acquirePrint = new AcquirePrintThread();
+                acquirePrint.start();
+            } else {
+                l1.setText("ERROR: Could not connect to the scanner device.");
+                deviceConnected = false;
+            }
+        });
+        
+        buttonKeep.addActionListener((ActionEvent e) -> {
+            containerKeep.setIcon(containerScan.getIcon());
+            b3.setEnabled(true);
+        });
+        
+        b3.addActionListener((ActionEvent e) -> {
+            File imageFile = new File("fingerprint.png");
+            ImageIcon icon = (ImageIcon)containerKeep.getIcon();
+            BufferedImage fileData = (BufferedImage)((Image) icon.getImage());
+            try {
+                ImageIO.write(fileData, "png", imageFile);
+            } catch (IOException ex) {
+                Logger.getLogger(ZK4500.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        f.setSize(734,570); 
+        f.setLayout(null);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	closeScanner();
+            }
+        } );
+        f.setLocationRelativeTo(null);
+        f.setVisible(true); 
+    }
+    
+    private void closeScanner() {
+        scanningActive = false;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ZK4500.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (0 != database) {
+                FingerprintSensorEx.DBFree(database);
+                database = 0;
+        }
+        if (0 != device) {
+                FingerprintSensorEx.CloseDevice(device);
+                device = 0;
+        }
+        FingerprintSensorEx.Terminate();
+    }
+    
+    public class AcquirePrintThread extends Thread {
+        @Override
+        public void run() {
+            if (deviceConnected == true) {
+                while (scanningActive == true) {
+                    int value = FingerprintSensorEx.AcquireFingerprintImage(device, imageData);
+                    if (value == 0) {                  
+                        BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_BYTE_GRAY);
+                        image.getRaster().setDataElements(0, 0, imageWidth, imageHeight, imageData);
+                        containerScan.setIcon(new ImageIcon(image));  
+                        buttonKeep.setEnabled(true);
+                        labelKeep.setVisible(true);
+                    }
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ZK4500.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+    }
+    
+    private int byteArrayToInt(byte[] bytes) {
+        int number = bytes[0] & 0xFF;
+        number |= ((bytes[1] << 8) & 0xFF00);
+        number |= ((bytes[2] << 16) & 0xFF0000);
+        number |= ((bytes[3] << 24) & 0xFF000000);
+        return number;
+    }
+    
+    public static void main(String[] args) {
+        new ZK4500().startApplication();
+    }
+}</pre>
+	<hr>
+</details>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+	highlightJava("code");
+});
+</script>
+
+</main>
+<footer>
+
+<div class="examples-footer" style="margin-top:2rem;">
+	<a href="examples.htm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 20,8 H 14 V 2 L 4,12 14,22 v -6 h 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Back to Examples</a>
+	<a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" style="height:1.2rem; position:relative; top:0.25rem; margin-right:0.5ch; overflow:visible; stroke:currentColor;">
+		<path d="M 8,20 V 14 H 2 L 12,4 22,14 h -6 v 6" style="stroke-width:0.08rem; stroke-linecap:round; stroke-linejoin:round;" />
+	</svg>Scroll Up</a>
+</div>
+
+</footer>
+</div>
+
+</body>
+</html>

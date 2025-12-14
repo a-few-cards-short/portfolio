@@ -1,0 +1,132 @@
+.compare-images {
+	position: relative;
+	--position: 50%;
+	user-select: none;
+	aspect-ratio: 1568/908;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+}
+
+.compare-images img {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	width: 100%;
+	min-height: 100%;
+	object-fit: cover;
+}
+
+.compare-images img:nth-child(2) {
+	width: var(--position);
+	object-position: left;
+	overflow: hidden;
+}
+
+.slider {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: ew-resize;
+}
+
+.divider {
+	position: absolute;
+	inset: 0;
+	width: 3rem;
+	height: 100%;
+	left: var(--position);
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+
+.view {
+	position: absolute;
+	right: 0.5rem ;
+	top: 0.5rem;
+	width: 2rem;
+	height: 2rem;
+	cursor: pointer;
+}
+
+.shadow {
+	filter:drop-shadow(0 0.15rem 0.1rem #0006);
+}
+
+.divider path, .divider line, .view path {
+	fill: none;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	vector-effect: non-scaling-stroke;
+}
+
+.instruction {
+	position: absolute;
+	left: 25%;
+	top: 30%;
+	padding: 1rem;
+	width: 50%;
+	max-width: 50%;
+	background: white;
+	border-radius: 1rem;
+	text-align: center;
+	transform: translateY(-50%);
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity 0.5s ease;
+	font-weight: 600;
+	box-shadow: 0 0.5rem 1rem #0006;
+}
+
+.polar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.compare-captures {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	width: 100%;
+}
+
+.compare-captures > div {
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	display: block;
+	position: relative;
+}
+
+.expanded {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #62677399;
+	z-index: 9000;
+	overflow: hidden;
+}
+
+.expanded .compare-images {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.expanded .view { margin: 1rem; }
+
+.icon {
+	position: relative;
+	top: 0.1rem;
+	height: 1.5rem;
+}

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Cody Kostiuk">
-<title>CK | Contact</title>
+<title>CK | Portfolio</title>
 <link rel="icon" href="">
 <link rel="stylesheet" href="styles/style.css">
 <script defer src="scripts/script.js"></script>
@@ -39,21 +39,83 @@
 
 <h1 style="padding-top:0;">contact</h1>
 
-<form id="contact-form" action="https://formsubmit.co/a1d85aef604fd8e80412f3a0f53c974f" method="POST"/>
-  <div class="form-row"><label for="name">NAME:</label>
-  <input type="text" id="name" name="name" required autocomplete="on"></div>
+<style>
+#contact-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    width: 80%;
+    margin: 1.5rem auto;
+}
+#contact-form > * {
+    width: 100%;
+    font-family: "Quicksand-Base64", sans-serif;
+	font-weight: 475;
+	font-size: 1rem;
+    padding: 0.2rem;
+}
+#contact-form label { text-align: right; }
+#contact-form textarea { resize: vertical; min-height: 5rem; }
+#contact-form button {
+    width: 50%;
+}
+</style>
 
-  <div class="form-row"><label for="email">EMAIL:</label>
-  <input type="email" id="email" name="email" required autocomplete="on"></div>
+<p><div id="status"></div></p>
 
-  <div class="form-row"><label for="message">MESSAGE:</label>
-  <textarea id="message" name="message" rows="5" required></textarea></div>
+<form id="contact-form" action="https://formsubmit.co/a1d85aef604fd8e80412f3a0f53c974f" method="POST">
+  <label for="name">NAME:</label>
+  <input type="text" id="name" name="name" required autocomplete="on">
+
+  <label for="email">EMAIL:</label>
+  <input type="email" id="email" name="email" required autocomplete="on">
+
+  <label for="message">MESSAGE:</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
   
-  <div class="form-row"><div></div>
-  <button type="submit">SEND</button></div>
+  <div> </div>
+  <button type="submit">SEND</button>
 
-  <input type="hidden" name="_subject" value="Cody Kostiuk - Instructor">
+  <input type="hidden" name="_subject" value="CK | Instructor">
 </form>
+
+<script>
+	document.body.addEventListener("submit", async (event) => {
+    event.preventDefault(); // stop default
+
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("status");
+    
+    status.innerHTML = "Sending...<br>&nbsp;";
+    
+    const data = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(data))
+    })// fetch response
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network error! Something went wrong. ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success === "false") {
+                throw new Error("External error. " + data.message);
+            }
+            console.log("Success:", data);
+            window.location = "thank-you.htm";
+        })
+        .catch(error => {
+            status.innerHTML = error.message + " Please try again later.<br>&nbsp;";
+        });
+	});
+</script>
 
 </main>
 <footer>

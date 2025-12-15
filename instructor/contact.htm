@@ -39,54 +39,32 @@
 
 <h1 style="padding-top:0;">contact</h1>
 
-<style>
-#contact-form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    width: 80%;
-    margin: 1.5rem auto;
-}
-#contact-form > * {
-    width: 100%;
-    font-family: "Quicksand-Base64", sans-serif;
-	font-weight: 475;
-	font-size: 1rem;
-    padding: 0.2rem;
-}
-#contact-form label { text-align: right; }
-#contact-form textarea { resize: vertical; min-height: 5rem; }
-#contact-form button {
-    width: 50%;
-}
-</style>
+<div id="form-message"></div>
 
-<p><div id="status"></div></p>
+<form id="form-email" action="https://formsubmit.co/a1d85aef604fd8e80412f3a0f53c974f" method="POST"/>
+  <div class="form-row"><label for="name">NAME:</label>
+  <input type="text" id="name" name="name" required autocomplete="on"></div>
 
-<form id="contact-form" action="https://formsubmit.co/a1d85aef604fd8e80412f3a0f53c974f" method="POST">
-  <label for="name">NAME:</label>
-  <input type="text" id="name" name="name" required autocomplete="on">
+  <div class="form-row"><label for="email">EMAIL:</label>
+  <input type="email" id="email" name="email" required autocomplete="on"></div>
 
-  <label for="email">EMAIL:</label>
-  <input type="email" id="email" name="email" required autocomplete="on">
-
-  <label for="message">MESSAGE:</label>
-  <textarea id="message" name="message" rows="5" required></textarea>
+  <div class="form-row"><label for="message">MESSAGE:</label>
+  <textarea id="message" name="message" rows="5" required></textarea></div>
   
-  <div> </div>
-  <button type="submit">SEND</button>
+  <div class="form-row"><div></div>
+  <button type="submit">SEND</button></div>
 
-  <input type="hidden" name="_subject" value="CK | Instructor">
+  <input type="hidden" name="_subject" value="Cody Kostiuk - Instructor">
 </form>
 
 <script>
 	document.body.addEventListener("submit", async (event) => {
     event.preventDefault(); // stop default
 
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("status");
+    const form = document.getElementById("form-email");
+    const messageBox = document.getElementById("form-message");
     
-    status.innerHTML = "Sending...<br>&nbsp;";
+    messageBox.innerHTML = "Sending...<br>&nbsp;";
     
     const data = new FormData(form);
 
@@ -112,7 +90,7 @@
             window.location = "thank-you.htm";
         })
         .catch(error => {
-            status.innerHTML = error.message + " Please try again later.<br>&nbsp;";
+            messageBox.innerHTML = error.message + " Please try again later.<br>&nbsp;";
         });
 	});
 </script>
